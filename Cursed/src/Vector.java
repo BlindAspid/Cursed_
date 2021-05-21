@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Vector<T extends Number> {
     private Object[] data;
+    public Vector(int size) {
+        data = new Object[size];
+    }
     public Vector(T ... data) {
         this.data = new Object[data.length];
         for (int i = 0; i < data.length; i++) {
@@ -23,7 +26,7 @@ public class Vector<T extends Number> {
         return data.length == 0 ? null : (T) data[data.length - 1];
     }
     public void set(int index, T element) {
-        if (index > 0 && index < data.length) {
+        if (index >= 0 && index < data.length) {
             data[index] = element;
         }
     }
@@ -87,7 +90,7 @@ public class Vector<T extends Number> {
     public void swap(Vector<T> other, int index) {
         if (other.size() > index && data.length > index) {
             T buffer = other.get(index);
-            other.insert(index, (T) data[index]);
+            other.set(index, (T) data[index]);
             data[index] = buffer;
         }
     }
